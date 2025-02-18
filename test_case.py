@@ -26,3 +26,11 @@ class TestToDoList(unittest.TestCase):
     def test_delete_all_list(self):
         self.todo.delete_all_tasks()
         self.assertTrue(len(self.todo.task_list) == 0)
+
+    def test_change_status(self):
+        self.todo.change_status("Call mom", True)
+        self.assertTrue(self.todo.show_completed_tasks()[0].status)
+
+    def test_show_completed_tasks_empty(self):
+        with self.assertRaises(ValueError):
+            self.todo.show_completed_tasks()

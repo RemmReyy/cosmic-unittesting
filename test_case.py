@@ -34,3 +34,15 @@ class TestToDoList(unittest.TestCase):
     def test_show_completed_tasks_empty(self):
         with self.assertRaises(ValueError):
             self.todo.show_completed_tasks()
+
+    def test_sort_by_priority(self):
+        sorted_tasks = self.todo.sort_by_priority()
+        self.assertEqual(sorted_tasks[0].priority, "High")
+        self.assertEqual(sorted_tasks[1].priority, "Medium")
+
+    def test_edit_the_task(self):
+        self.todo.edit_the_task('Make homework',"Write test cases using Python unittest")
+        for task in self.todo.task_list:
+            if task.task_title == 'Make homework':
+                self.assertEqual(task.task_text,"Write test cases using Python unittest")
+

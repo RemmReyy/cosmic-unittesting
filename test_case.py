@@ -15,3 +15,14 @@ class TestToDoList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.todo.add_task("Call mom", "Call mom and wish happy birthday", "18.02.2025", "High")
 
+    def test_deleting_tusk(self):
+        self.todo.delete_task('Make homework')
+        self.assertFalse(self.todo.task_exists('Make homework'))
+
+    def test_delete_nonexistent_task(self):
+        with self.assertRaises(NameError):
+            self.todo.delete_task("Nonexistent Task")
+
+    def test_delete_all_list(self):
+        self.todo.delete_all_tasks()
+        self.assertTrue(len(self.todo.task_list) == 0)

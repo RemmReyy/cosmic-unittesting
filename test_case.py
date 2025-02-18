@@ -46,3 +46,9 @@ class TestToDoList(unittest.TestCase):
             if task.task_title == 'Make homework':
                 self.assertEqual(task.task_text,"Write test cases using Python unittest")
 
+    def test_invalid_priority(self):
+        with self.assertRaises(ValueError):
+            Task("Invalid Task", "Text", "2025-01-01", "InvalidPriority")
+
+if __name__ == "__main__":
+    unittest.main()

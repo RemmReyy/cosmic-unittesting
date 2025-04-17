@@ -1,0 +1,35 @@
+[cosmic-ray]
+module-path = "to_do_list.py"
+python-version = "3"
+timeout = 60
+excluded-modules = []
+test-command = "python -m unittest test_case.py"
+
+[execution-engine]
+name = "local"
+
+[cosmic-ray.distributor]
+name = "local"
+
+[cosmic-ray.filters.operators-filter]
+operators = [
+    "arithmetic_operator_replacement",
+    "break_continue",
+    "comparison_operator_replacement",
+    "logical_operator_replacement",
+    "number_replacer",
+    "remove_decorator",
+    "return_values",
+    "exception_replacer",
+    "zero_iteration_loop",
+    "conditional_expression",
+    "boolean_replacer",
+]
+operator-exclude = [
+    "unicode-decode-error",
+    "mutate_module_imports"
+]
+no-mutation = [
+    "def __init__",  # Уникаємо мутацій у конструкторах
+    "def task_exists",  # Ця функція використовується багатьма іншими
+]

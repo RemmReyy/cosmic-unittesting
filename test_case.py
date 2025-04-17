@@ -15,7 +15,7 @@ class TestToDoList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.todo.add_task("Call mom", "Call mom and wish happy birthday", "18.02.2025", "High")
 
-    def test_deleting_tusk(self):
+    def test_deleting_task(self):
         self.todo.delete_task('Make homework')
         self.assertFalse(self.todo.task_exists('Make homework'))
 
@@ -40,9 +40,21 @@ class TestToDoList(unittest.TestCase):
             self.todo.show_completed_tasks()
 
     def test_sort_by_priority(self):
+        self.todo.delete_all_tasks()
+
+        self.todo.add_task("Low task", "Description", "25.02.2025", "Low")
+        self.todo.add_task("Medium task", "Description", "24.02.2025", "Medium")
+        self.todo.add_task("High task", "Description", "23.02.2025", "High")
+
         sorted_tasks = self.todo.sort_by_priority()
+
+        self.assertEqual(len(sorted_tasks), 3)
         self.assertEqual(sorted_tasks[0].priority, "High")
+        self.assertEqual(sorted_tasks[0].task_title, "High task")
         self.assertEqual(sorted_tasks[1].priority, "Medium")
+        self.assertEqual(sorted_tasks[1].task_title, "Medium task")
+        self.assertEqual(sorted_tasks[2].priority, "Low")
+        self.assertEqual(sorted_tasks[2].task_title, "Low task")
 
     def test_edit_the_task(self):
         self.todo.edit_the_task('Make homework',"Write test cases using Python unittest")

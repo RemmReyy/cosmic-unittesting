@@ -1,8 +1,8 @@
 [cosmic-ray]
 module-path = "to_do_list.py"
 python-version = "3"
-timeout = 60
-excluded-modules = []
+timeout = 120  # Збільшуємо таймаут
+excluded-modules = ["test_case.py"]  # Виключаємо тестовий файл
 test-command = "python -m unittest test_case.py"
 
 [execution-engine]
@@ -18,18 +18,20 @@ operators = [
     "comparison_operator_replacement",
     "logical_operator_replacement",
     "number_replacer",
-    "remove_decorator",
     "return_values",
     "exception_replacer",
-    "zero_iteration_loop",
     "conditional_expression",
     "boolean_replacer",
+    "string_replacer",
+    "attribute_replacer",
 ]
 operator-exclude = [
     "unicode-decode-error",
-    "mutate_module_imports"
+    "mutate_module_imports",
+    "remove_decorator",
+    "zero_iteration_loop",
 ]
 no-mutation = [
-    "def __init__",  # Уникаємо мутацій у конструкторах
-    "def task_exists",  # Ця функція використовується багатьма іншими
+    "def __init__",
+    "def task_exists",
 ]

@@ -31,6 +31,10 @@ class TestToDoList(unittest.TestCase):
         self.todo.change_status("Call mom", True)
         self.assertTrue(self.todo.show_completed_tasks()[0].status)
 
+    def test_change_status_non_existent_task(self):
+        with self.assertRaises(NameError):
+            self.todo.change_status("Empty task", True)
+
     def test_show_completed_tasks_empty(self):
         with self.assertRaises(ValueError):
             self.todo.show_completed_tasks()

@@ -61,10 +61,13 @@ class TestToDoList(unittest.TestCase):
         self.assertEqual(sorted_tasks[2].task_title, "Low task")
 
     def test_edit_the_task(self):
-        self.todo.edit_the_task('Make homework',"Write test cases using Python unittest")
+        result = self.todo.edit_the_task('Make homework',"Write test cases using Python unittest")
+        self.assertTrue(result)
         for task in self.todo.task_list:
             if task.task_title == 'Make homework':
-                self.assertEqual(task.task_text,"Write test cases using Python unittest")
+                self.assertEqual(task.task_text, "Write test cases using Python unittest")
+            elif task.task_title == "Call mom":
+                self.assertEqual(task.task_text, "Call mom and wish happy birthday")
 
     def test_invalid_priority(self):
         with self.assertRaises(ValueError):
